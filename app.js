@@ -90,3 +90,18 @@ statusCell.appendChild(statusSelect)
         tableBody.appendChild(row);
     };
 }
+
+function filterTasks() {
+    const categoryValue = documnet.getElementById("categoryFilter").value
+    const statusValue = document.getElementById("statusFilter").value
+const today = new Date().toISOString().split("T")[0];
+const filtered = tasks.filter(task => {
+    if (task.status !== "Completed" && task.deadline < today) {
+        task.status = "Overdue";
+    }
+    const categoryMatch = categoryValue ===  "" || task.category === categoryValue;
+    const statusMatch = statusValue === "" || task.status === statusValue;
+    return categoryMatch && statusMatch;
+});
+showTasks(filtered);
+}

@@ -28,6 +28,23 @@
        
 
     </form>
+    
+    <h3>Filter Tasks</h3>
+    <select id="categoryFilter" onchange="filterTasks()">
+        <option value="">All Categories</option>
+        <option value="Work">Work</option>
+        <option value="Activities">Activities</option>
+        <option value="Personal">Personal</option>
+        <option value="School">School</option>
+    </select>
+
+    <select id="statusFilter" onchange="filterTasks()">
+ <option value="">All Statuses</option>
+ <option value="In progress">In progress</option>
+ <option value="Completed">Completed</option>
+ <option value="Overdue">Overdue</option>
+    </select>
+   
 
 <table id="taskTable" border="1">
     <thead>
