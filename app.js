@@ -42,6 +42,8 @@ function displayTasks() {
     const tableBody = document.getElementById("taskTableBody");
     tableBody.innerHTML = "";
 
+    const today = new Date().toISOString().split("T")[0];
+
     for (let i = 0; i < tasks.length; i++) {
         const row = document.createElement("tr");
         const nameCell = document.createElement("td");
@@ -52,6 +54,34 @@ function displayTasks() {
         deadlineCell.textContent = tasks[i].deadline;
         const statusCell = document.createElement("td");
         statusCell.textContent = tasks[i].status;
+
+if (tasks[i].status !== "Completed" && tasks[i].deadline < today) {
+    tasks[i].status = "Overdue";
+}
+
+const statusSelect = document.createElement("select");
+const statuses = ["In progress","Completed", "Overdue"];
+for (let j = 0; j < statuses.length; j++) {
+    const option =document.createElement("option");
+    option.vaule = statuses [j];
+    option.textContent = statuses[j];
+
+    if (statuses[j] === tasks[i].status) {
+        option.selected = true;
+    }
+
+    statusSelect.appendChild(option);
+} 
+   
+   
+    statusSelect.addEventListener("change", function () {
+        tasks[i].status = this.vaule;
+        displayTasks();
+    });
+
+statusCell.appendChild(statusSelect)
+
+
 
         row.appendChild(nameCell);
         row.appendChild(categoryCell);
