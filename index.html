@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management App</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+    <form>
+        <h1>Task List</h1>
+        <input type="text" id="taskName" placeholder="e.g. Task name">
+        <select id="taskCategory">
+            <option value="Work">Work</option>
+            <option value="Activities">Activities</option>
+            <option value="Personal">Personal</option>
+            <option value="School">School</option>
+        </select>
+        <input type="date" id="taskDeadline">
+        <select id="taskStatus">
+            <option value="In progress">In Progress</option>
+            <option value="Completed">Completed</option>
+
+        </select>
+        <button onclick="addTask(event)">Add Task</button>
+        <ul id="taskList"></ul>
+
+    </form>
+
+<table id="taskTable" border="1">
+    <thead>
+        <tr>
+            <th>Task Name</th>
+            <th>Category</th>
+            <th>Dealine</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody id="taskTableBody"></tbody>
+</table>
+
+
+
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>
