@@ -18,14 +18,14 @@
             <option value="Personal">Personal</option>
             <option value="School">School</option>
         </select>
-        <input type="date" id="taskDeadline">
+        <input type="date" id="taskDeadline"/>
         <select id="taskStatus">
             <option value="In progress">In Progress</option>
             <option value="Completed">Completed</option>
 
         </select>
         <button onclick="addTask(event)">Add Task</button>
-        <ul id="taskList"></ul>
+       
 
     </form>
 
@@ -34,11 +34,13 @@
         <tr>
             <th>Task Name</th>
             <th>Category</th>
-            <th>Dealine</th>
+            <th>Deadline</th>
             <th>Status</th>
         </tr>
     </thead>
-    <tbody id="taskTableBody"></tbody>
+    <tbody id="taskTableBody">
+
+    </tbody>
 </table>
 
 
