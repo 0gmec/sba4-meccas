@@ -10,7 +10,7 @@
 
 <body>
     <form>
-        <h1>Task List</h1>
+        <h1>Task Manager</h1>
         <input type="text" id="taskName" placeholder="e.g. Task name">
         <select id="taskCategory">
             <option value="Work">Work</option>
@@ -28,8 +28,9 @@
        
 
     </form>
-    
-    <h3>Filter Tasks</h3>
+
+    <h4>Filter Tasks</h3>
+    <label for="categoryFilter">Category:</label>
     <select id="categoryFilter" onchange="filterTasks()">
         <option value="">All Categories</option>
         <option value="Work">Work</option>
@@ -38,6 +39,7 @@
         <option value="School">School</option>
     </select>
 
+    <label for="statusFilter">Status:</label>
     <select id="statusFilter" onchange="filterTasks()">
  <option value="">All Statuses</option>
  <option value="In progress">In progress</option>
