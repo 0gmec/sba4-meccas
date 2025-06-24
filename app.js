@@ -18,84 +18,71 @@ function addTask(event) {
         status: status,
     };
     tasks.push(task);
-    console.log("Task added:", task);
-    console.log("All tasks:", tasks);
+    showTask(tasks);
 
     document.getElementById("taskName").value = "";
     document.getElementById("taskDeadline").value = "";
-    showTasks();
+    
 
 }
 
-
-function showTasks(taskList = tasks) {
+function showTask(taskList) {
     const tableBody = document.getElementById("taskTableBody");
     tableBody.innerHTML = "";
-    
+
     const today = new Date().toISOString().split("T")[0];
-    
-    taskList.forEach(task, index); {
-    
- if (tasks[i].status !== "Completed" && tasks[i].deadline < today) {
-        tasks[i].status = "Overdue";
-}}
-}
 
-
-for (let i = 0; i < tasks.length; i++) {
-
-
-
-    const row = document.createElement("tr");
-    const nameCell = document.createElement("td");
-    nameCell.textContent = tasks[i].name;
-    const categoryCell = document.createElement("td");
-    categoryCell.textContent = tasks[i].category;
-    const deadlineCell = document.createElement("td")
-    deadlineCell.textContent = tasks[i].deadline;
-    const statusCell = document.createElement("td");
-    statusCell.textContent = tasks[i].status;
-
-    const statusSelect = document.createElement("select");
-    const statuses = ["In progress", "Completed", "Overdue"];
-
-
-
-
-    for (let j = 0; j < statuses.length; j++) {
-        const option = document.createElement("option");
-        option.vaule = statuses[j];
-        option.textContent = statuses[j];
-
-        if (statuses[j] === tasks[i].status) {
-            option.selected = true;
+    taskList.forEach((task, index) => {
+        if (task.status !== "Completed" && task.deadline < today) {
+            task.status = "Overdue";
         }
 
-        statusSelect.appendChild(option);
-    }
+        const row = document.createElement("tr");
 
+        const nameCell = document.createElement("td");
+        nameCell.textContent = task.name;
 
-    statusSelect.addEventListener("change", function () {
-        tasks[i].status = this.vaule;
-        displayTasks();
-    });
+        const categoryCell = document.createElement("td");
+        categoryCell.textContent = task.category;
 
-    statusCell.appendChild(statusSelect)
+        const deadlineCell = document.createElement("td");
+        deadlineCell.textContent = task.deadline;
 
+        const statusCell = document.createElement("td");
+        const statusSelect = document.createElement("select");
 
+        const statuses = ["In progress", "Completed", "Overdue"];
+        statuses.forEach((status) => {
+            const option = document.createElement("option");
+            option.value = status; 
+            option.textContent = status;
+            if (task.status === status) {
+                option.selected = true;
+            }
+            statusSelect.appendChild(option);
+        });
+
+        statusSelect.addEventListener("change", function () {
+            taskList[index].status = this.value;
+            showTask(taskList);
+        });
+
+        statusCell.appendChild(statusSelect);
 
         row.appendChild(nameCell);
         row.appendChild(categoryCell);
         row.appendChild(deadlineCell);
         row.appendChild(statusCell);
-        tableBody.appendChild(row);
-    };
 
+        tableBody.appendChild(row);
+    });
+}
 
 function filterTasks() {
-    const categoryValue = documnet.getElementById("categoryFilter").value
-    const statusValue = document.getElementById("statusFilter").value
+    const categoryValue = document.getElementById("categoryFilter").value;
+    const statusValue = document.getElementById("statusFilter").value;
     const today = new Date().toISOString().split("T")[0];
+
     const filtered = tasks.filter(task => {
         if (task.status !== "Completed" && task.deadline < today) {
             task.status = "Overdue";
@@ -104,5 +91,7 @@ function filterTasks() {
         const statusMatch = statusValue === "" || task.status === statusValue;
         return categoryMatch && statusMatch;
     });
-    showTasks(filtered);
+
+    showTask(filtered);
 }
+showTask(tasks);
